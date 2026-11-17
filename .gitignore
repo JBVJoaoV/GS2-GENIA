@@ -1,0 +1,9 @@
+# pesos do adaptador LoRA e checkpoints (> 100 MB não vão ao GitHub)
+adapters/
+*_ckpt/
+*.safetensors
+*.bin
+__pycache__/
+.ipynb_checkpoints/
+.pytest_cache/
+.env

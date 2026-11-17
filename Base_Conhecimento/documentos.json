@@ -1,0 +1,126 @@
+[
+  {
+    "id": "DOC001",
+    "arquivo": "20250428_roteiro_metodologico.pdf",
+    "titulo": "Roteiro Metodológico para Elaboração de Planos Operativos",
+    "instituicao": "IBAMA / Prevfogo",
+    "categoria": "prevencao_manejo",
+    "tipo": "manual_tecnico",
+    "aplicacao": [
+      "incendio_florestal"
+    ],
+    "prioridade": 1,
+    "status": "referencia_tecnica",
+    "ano": 2009
+  },
+  {
+    "id": "DOC002",
+    "arquivo": "GUIA-PRATICO-PMIF.pdf",
+    "titulo": "Guia Prático de Manejo Integrado do Fogo",
+    "instituicao": "ISPN / IBAMA",
+    "categoria": "prevencao_manejo",
+    "tipo": "guia_pratico",
+    "aplicacao": [
+      "incendio_florestal"
+    ],
+    "prioridade": 1,
+    "status": "referencia_tecnica"
+  },
+  {
+    "id": "DOC003",
+    "arquivo": "cartilhaPNMIF.pdf",
+    "titulo": "Manejo Integrado do Fogo",
+    "instituicao": "IBAMA",
+    "categoria": "legislacao_politicas",
+    "tipo": "cartilha_institucional",
+    "aplicacao": [
+      "incendio_florestal"
+    ],
+    "prioridade": 1,
+    "status": "referencia_institucional",
+    "ano": 2026
+  },
+  {
+    "id": "DOC004",
+    "arquivo": "E-possivel-controlar-fogo-vs-site.pdf",
+    "titulo": "É possível controlar o fogo",
+    "instituicao": "ISPN",
+    "categoria": "prevencao_manejo",
+    "tipo": "material_informativo",
+    "aplicacao": [
+      "incendio_florestal"
+    ],
+    "prioridade": 3,
+    "status": "historico"
+  },
+  {
+    "id": "DOC005",
+    "arquivo": "2010_ICMBIO_ApostilaBrigadistaPrevencaoIncendios_MMA_DE3os.pdf",
+    "titulo": "Apostila Brigadista de Prevenção e Combate",
+    "instituicao": "ICMBio / MMA",
+    "categoria": "brigadistas_seguranca",
+    "tipo": "manual_operacional",
+    "aplicacao": [
+      "incendio_florestal"
+    ],
+    "prioridade": 1,
+    "status": "referencia_tecnica",
+    "ano": 2010
+  },
+  {
+    "id": "DOC006",
+    "arquivo": "20250311_Manual_22661453_Manual_SCI_100_Introducao_ao_Sistema_de_Comando_de_Incidente_marco2025.pdf",
+    "titulo": "Introdução ao Sistema de Comando de Incidentes",
+    "instituicao": "IBAMA / ICMBio / USFS",
+    "categoria": "comando_incidentes",
+    "tipo": "manual_capacitacao",
+    "aplicacao": [
+      "multiplas_emergencias"
+    ],
+    "prioridade": 1,
+    "status": "referencia_tecnica",
+    "ano": 2024
+  },
+  {
+    "id": "DOC007",
+    "arquivo": "20250311_Manual_22661456_Manual_SCI_200_Basico_do_Sistema_de_Comando_de_Incidentes_para_Resposta_Inicial_marco2025.pdf",
+    "titulo": "Sistema de Comando de Incidentes - Resposta Inicial",
+    "instituicao": "IBAMA / USFS",
+    "categoria": "comando_incidentes",
+    "tipo": "manual_capacitacao",
+    "aplicacao": [
+      "multiplas_emergencias"
+    ],
+    "prioridade": 1,
+    "status": "referencia_tecnica",
+    "ano": 2024
+  },
+  {
+    "id": "DOC008",
+    "arquivo": "20250311_Manual_22661458_Manual_do_Curso_Intermediario_SCI_300_para_incidentes_em_expansao_marco2025.pdf",
+    "titulo": "SCI para Incidentes em Expansão",
+    "instituicao": "IBAMA / ICMBio / USFS",
+    "categoria": "comando_incidentes",
+    "tipo": "manual_capacitacao",
+    "aplicacao": [
+      "multiplas_emergencias"
+    ],
+    "prioridade": 1,
+    "status": "referencia_tecnica",
+    "ano": 2024
+  },
+  {
+    "id": "DOC009",
+    "arquivo": "instrucao_tecnica_16_2015_plano_de_emergencia_contra_incendio.pdf",
+    "titulo": "Instrução Técnica 16 - Plano de Emergência",
+    "instituicao": "Corpo de Bombeiros de São Paulo",
+    "categoria": "incendios_edificacoes",
+    "tipo": "instrucao_tecnica",
+    "aplicacao": [
+      "incendio_edificacao"
+    ],
+    "prioridade": 2,
+    "status": "verificar_vigencia",
+    "ano": 2015
+  }
+]
