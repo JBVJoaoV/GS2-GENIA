@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "defesacivil-llm"
+version = "0.1.0"
+description = "Assistente local (Qwen2.5-3B + RAG + LoRA) de protocolos de incêndio para a Defesa Civil"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "torch",
+    "transformers>=4.44",
+    "accelerate>=0.33",
+    "peft>=0.12",
+    "sentence-transformers>=3.0",
+    "numpy",
+]
+
+[project.optional-dependencies]
+api = ["fastapi", "uvicorn", "pydantic>=2"]
+
+# O diretório src/ vira o pacote importável `defesacivil_llm` (os notebooks seguem usando `src`).
+[tool.setuptools]
+packages = ["defesacivil_llm"]
+
+[tool.setuptools.package-dir]
+defesacivil_llm = "src"
+
+[tool.setuptools.package-data]
+defesacivil_llm = ["data/*.jsonl", "data/*.json"]

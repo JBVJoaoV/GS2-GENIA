@@ -1,0 +1,10 @@
+doc_id,titulo,instituicao,formato,status,licenca,paginas,chunks
+DOC001,Roteiro Metodológico para Elaboração de Planos Operativos,IBAMA / Prevfogo,PDF,referencia_tecnica,"Publicação institucional (IBAMA/Prevfogo); licença não declarada no PDF - uso acadêmico, citando a fonte",46,113
+DOC002,Guia Prático de Manejo Integrado do Fogo,ISPN / IBAMA,PDF,referencia_tecnica,"Publicação institucional (ISPN/IBAMA); licença não declarada no PDF - uso acadêmico, citando a fonte",37,95
+DOC003,Manejo Integrado do Fogo,IBAMA,PDF,referencia_institucional,"Publicação institucional (IBAMA); licença não declarada no PDF - uso acadêmico, citando a fonte",36,41
+DOC004,É possível controlar o fogo,ISPN,PDF,historico,"Material informativo (ISPN); licença não declarada no PDF - uso acadêmico, citando a fonte",4,8
+DOC005,Apostila Brigadista de Prevenção e Combate,ICMBio / MMA,PDF,referencia_tecnica,"Publicação institucional (ICMBio/MMA); licença não declarada no PDF - uso acadêmico, citando a fonte",90,175
+DOC006,Introdução ao Sistema de Comando de Incidentes,IBAMA / ICMBio / USFS,PDF,referencia_tecnica,"Manual SCI: reprodução permitida sem alteração, citando a fonte e sem fins comerciais (nota do manual)",85,167
+DOC007,Sistema de Comando de Incidentes - Resposta Inicial,IBAMA / USFS,PDF,referencia_tecnica,"Manual SCI: reprodução permitida sem alteração, citando a fonte e sem fins comerciais (nota do manual)",143,307
+DOC008,SCI para Incidentes em Expansão,IBAMA / ICMBio / USFS,PDF,referencia_tecnica,"Manual SCI: reprodução permitida sem alteração, citando a fonte e sem fins comerciais (nota do manual)",181,363
+DOC009,Instrução Técnica 16 - Plano de Emergência,Corpo de Bombeiros de São Paulo,PDF,verificar_vigencia,Norma técnica do CBPMESP (IT 16); licença não declarada - verificar vigência (cabeçalho do PDF traz 'IT 16/2011'),13,43

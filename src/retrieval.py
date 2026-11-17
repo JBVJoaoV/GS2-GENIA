@@ -8,15 +8,40 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
+from pathlib import Path
 
 import numpy as np
 
 from . import config
 
 
+def _encode_cached(model, texts: list[str], cache_path=None, extra_key: str = ""):
+    """Embeddings dos trechos com cache em disco (evita recalcular a cada execução).
+
+    O cache vale só se o conteúdo dos textos (e o modelo/cabeçalho em extra_key) for idêntico.
+    """
+    import hashlib
+    key = hashlib.sha1((extra_key + "\x00" + "\x00".join(texts)).encode("utf-8")).hexdigest()
+    if cache_path is not None:
+        try:
+            z = np.load(cache_path, allow_pickle=False)
+            if str(z["key"]) == key:
+                return z["emb"]
+        except Exception:      # sem cache, arquivo corrompido ou de outra versão: recalcula
+            pass
+    emb = model.encode(texts, batch_size=32, normalize_embeddings=True, show_progress_bar=True)
+    if cache_path is not None:
+        try:
+            Path(cache_path).parent.mkdir(parents=True, exist_ok=True)
+            np.savez(cache_path, emb=emb, key=np.array(key))
+        except OSError:        # pasta sem permissão de escrita: segue sem cache
+            pass
+    return emb
+
+
 class Retriever:
     def __init__(self, chunks: list[dict], model_name: str = config.EMBED_MODEL,
-                 device: str | None = None, header: bool = True):
+                 device: str | None = None, header: bool = True, cache_path=None):
         from sentence_transformers import SentenceTransformer
         self.chunks = chunks
         self.header = header
@@ -26,8 +51,7 @@ class Retriever:
         def head(c):
             return f"{config.DOC_ALIAS.get(c['doc_id'], c['doc_id'])} - {c.get('titulo', '')}. " if header else ""
         texts = [f"passage: {head(c)}{c['text']}" for c in chunks]
-        self.emb = self.model.encode(texts, batch_size=32, normalize_embeddings=True,
-                                     show_progress_bar=True)
+        self.emb = _encode_cached(self.model, texts, cache_path, f"{model_name}|{header}")
 
     def search(self, query: str, k: int = config.TOP_K) -> list[dict]:
         q = self.model.encode([f"query: {query}"], normalize_embeddings=True)[0]

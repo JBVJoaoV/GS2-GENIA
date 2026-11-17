@@ -1,0 +1,4 @@
+,n,acuracia_%,acerto_respondiveis_%,recusa_correta_%,alucinacao_%,recusa_indevida_%,json_valido_%,citacao_correta_%,taxa_resposta_%,erro_entre_respondidas_%
+"A (base, sem contexto)",20.0,25.0,0.0,83.3,35.0,57.1,100.0,0.0,35.0,100.0
+B (RAG simples),20.0,35.0,35.7,33.3,55.0,0.0,90.0,64.3,80.0,68.8
+C (RAG + LoRA),20.0,55.0,35.7,100.0,40.0,7.1,100.0,53.8,65.0,61.5

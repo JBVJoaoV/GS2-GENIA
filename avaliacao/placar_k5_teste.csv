@@ -1,0 +1,5 @@
+,n,acuracia_%,acerto_respondiveis_%,recusa_correta_%,alucinacao_%,recusa_indevida_%,json_valido_%,citacao_correta_%,taxa_resposta_%,erro_entre_respondidas_%
+B (k=3),20.0,35.0,35.7,33.3,55.0,0.0,90.0,64.3,80.0,68.8
+B (k=5),20.0,50.0,57.1,33.3,25.0,0.0,75.0,76.9,65.0,38.5
+C (k=3),20.0,55.0,35.7,100.0,40.0,7.1,100.0,53.8,65.0,61.5
+C (k=5),20.0,70.0,57.1,100.0,30.0,0.0,100.0,64.3,70.0,42.9

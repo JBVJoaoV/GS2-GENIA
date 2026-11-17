@@ -1,0 +1,77 @@
+[
+ {
+  "config": "B (RAG simples)",
+  "id": "Q04",
+  "tipo_erro": "resposta incorreta/incompleta",
+  "pergunta": "Qual é a finalidade do calendário de queima de uma comunidade, segundo o Guia Prático de Manejo Integrado do Fogo?",
+  "resposta_do_sistema": "A finalidade do calendário de queima de uma comunidade, segundo o Guia Prático de Manejo Integrado do Fogo, é organizar as queimas programadas para o ano, permitindo que todos saibam dos planos de cada um e ajudando a comunidade a se preparar melhor para que nenhum fogo vire incêndio.",
+  "esperada": "No calendário de queima são listadas as queimas programadas para o ano, para que todos conheçam os planos de cada um e a comunidade se prepare; ele identifica os melhores meses para usar o fogo com segurança e inclui datas importantes para a comunidade.",
+  "recuperados": [
+   "DOC002-p020-c046",
+   "DOC002-p033-c092",
+   "DOC002-p020-c047"
+  ],
+  "causa_provavel": "A resposta omitiu um fato-chave ou o trecho recuperado cobria só parte da lista.",
+  "correcao_proposta": "Aumentar k para perguntas de lista; reordenar trechos; incluir exemplos de listas completas no LoRA."
+ },
+ {
+  "config": "B (RAG simples)",
+  "id": "Q22",
+  "tipo_erro": "formato inválido",
+  "pergunta": "Segundo o SCI-200, quando o Plano de Ação do Incidente deve ser elaborado por escrito?",
+  "resposta_do_sistema": "",
+  "esperada": "Nem sempre precisa ser escrito, mas deve ser confeccionado quando o incidente se torna complexo, quando a resposta é dada por diferentes agências e quando ultrapassa um ou mais períodos operacionais.",
+  "recuperados": [
+   "DOC007-p119-c271",
+   "DOC007-p104-c215",
+   "DOC008-p101-c168"
+  ],
+  "causa_provavel": "O modelo não produziu JSON válido nem após a nova tentativa.",
+  "correcao_proposta": "Decodificação restrita a JSON (outlines/guidance) ou mais exemplos de formato no LoRA."
+ },
+ {
+  "config": "B (RAG simples)",
+  "id": "Q23",
+  "tipo_erro": "citação de trecho errado",
+  "pergunta": "Segundo o SCI-100, o que é o Sistema de Comando de Incidentes (SCI)?",
+  "resposta_do_sistema": "Sistema de Comando de Incidentes (SCI) é uma ferramenta de gerenciamento de incidentes padronizada que permite ao usuário adotar uma estrutura organizacional integrada para suprir complexidades e demandas de incidentes únicos ou múltiplos, independentemente da localização do incidente.",
+  "esperada": "É uma estrutura padronizada para gerenciamento de emergências, que fornece uma organização integrada para incidentes únicos ou múltiplos, sem restrições jurisdicionais, e que também pode ser usada em eventos planejados.",
+  "recuperados": [
+   "DOC006-p082-c162",
+   "DOC006-p077-c139",
+   "DOC006-p079-c146"
+  ],
+  "causa_provavel": "A resposta está certa, mas o modelo citou outro trecho recuperado.",
+  "correcao_proposta": "Validar a citação contra o texto da resposta (sobreposição lexical) e re-tentar."
+ },
+ {
+  "config": "B (RAG simples)",
+  "id": "Q37",
+  "tipo_erro": "alucinação: respondeu pergunta fora da base",
+  "pergunta": "Qual é o tempo máximo, em minutos, que uma equipe de brigadistas deve levar para chegar ao foco de incêndio após o primeiro acionamento?",
+  "resposta_do_sistema": "O tempo máximo que uma equipe de brigadistas deve levar para chegar ao foco de incêndio após o primeiro acionamento é denominado Tempo de Resposta da Brigada. Este tempo deve ser o mais curto possível para minimizar a área impactada pelo fogo.",
+  "esperada": "Não consta na base documental fornecida.",
+  "recuperados": [
+   "DOC005-p054-c097",
+   "DOC005-p052-c096",
+   "DOC005-p072-c141"
+  ],
+  "causa_provavel": "O limiar deixou passar um trecho parecido e o modelo extrapolou além do que o trecho diz.",
+  "correcao_proposta": "Subir o limiar ou exigir que a resposta cite um número/termo presente no trecho (checagem pós-geração)."
+ },
+ {
+  "config": "C (RAG + LoRA)",
+  "id": "Q22",
+  "tipo_erro": "recusa indevida (modelo)",
+  "pergunta": "Segundo o SCI-200, quando o Plano de Ação do Incidente deve ser elaborado por escrito?",
+  "resposta_do_sistema": "Não consta nos documentos da base de conhecimento.",
+  "esperada": "Nem sempre precisa ser escrito, mas deve ser confeccionado quando o incidente se torna complexo, quando a resposta é dada por diferentes agências e quando ultrapassa um ou mais períodos operacionais.",
+  "recuperados": [
+   "DOC007-p119-c271",
+   "DOC007-p104-c215",
+   "DOC008-p101-c168"
+  ],
+  "causa_provavel": "O modelo não reconheceu a resposta no contexto (resposta espalhada em vários trechos).",
+  "correcao_proposta": "Aumentar k, aumentar o tamanho do trecho ou treinar mais exemplos de resposta multi-trecho."
+ }
+]
