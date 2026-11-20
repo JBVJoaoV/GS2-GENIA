@@ -2,6 +2,28 @@
 **FIAP · Global Solution 2026.2 · CitizenTech · Generative AI for Engineering**
 LLM local (Qwen2.5-3B-Instruct) com RAG sobre 9 documentos oficiais, JSON validado, citação de fonte, recusa ("não consta") e especialização por LoRA. Relatório completo: [`RELATORIO.md`](RELATORIO.md) · resultados: [`avaliacao/RESULTADOS.md`](avaliacao/RESULTADOS.md).
 
+## Integrantes
+| Nome completo | RM |
+|---|---|
+| João Vieira | 99805 |
+| Lucas Speranzini | 98297 |
+
+## Ficha Técnica do MVP
+- **Produto:** Assistente de protocolos de incêndio para a Defesa Civil (Jarvis Rescue)
+- **Cidadão e território:** agentes de Defesa Civil, brigadistas e gestores que atuam na prevenção e resposta a incêndios.
+- **Problema:** consultar protocolos de incêndio em manuais extensos é lento e arriscado em emergências.
+- **Proposta de valor:** respostas rápidas, com documento e página, a partir de fontes oficiais, e recusa quando a base não traz a resposta.
+- **Arquitetura:** 9 PDFs → trechos com fonte → busca (embeddings e5-base, limiar calibrado) → Qwen2.5-3B-Instruct com LoRA → resposta em JSON com citação ou "não consta".
+- **Fontes de dados:** manuais SCI-100/200/300, Instrução Técnica 16, apostila do brigadista (ICMBio/MMA), cartilhas e guias de manejo do fogo (ver `base/fontes.csv`).
+- **Modelos de IA:** Qwen2.5-3B-Instruct (LoRA) e multilingual-e5-base.
+- **Indicadores de impacto:** acerto nas perguntas respondíveis, taxa de alucinação e recusa correta fora da base (ver `avaliacao/RESULTADOS.md`).
+- **ODS conectados:** 11, 13 e 3 (abaixo).
+
+## ODS
+- **ODS 11 (Cidades e comunidades sustentáveis, meta 11.5):** apoia a redução de danos causados por desastres e a gestão de riscos.
+- **ODS 13 (Ação contra a mudança global do clima, meta 13.1):** reforça a capacidade de resposta a eventos climáticos extremos, como incêndios florestais.
+- **ODS 3 (Saúde e bem-estar, meta 3.d):** apoia a gestão de riscos à saúde e à vida em emergências.
+
 ## Estrutura
 | Pasta/arquivo | Conteúdo |
 |---|---|
@@ -20,7 +42,7 @@ LLM local (Qwen2.5-3B-Instruct) com RAG sobre 9 documentos oficiais, JSON valida
 5. API local: `uvicorn src.api:app --port 8000` e `POST /perguntar {"pergunta": "..."}`. Use `USE_LORA=0` para ignorar o adaptador.
 
 Semente fixa (`SEED=42`), decodificação gulosa (determinística) e limiar gravado em `results/threshold.json`.
-O adaptador LoRA (> 100 MB) **não está no repositório** (`.gitignore`): é regenerado pelo notebook 04 (≈ 20–40 min numa T4). Link do adaptador: _(preencher, se publicado no Drive/Hugging Face)_.
+O adaptador LoRA (> 100 MB) **não está no repositório** (`.gitignore`): é regenerado pelo notebook 04 (≈ 20–40 min numa T4). Adaptador publicado no Hugging Face: https://huggingface.co/JPSV/jarvis-rescue-lora
 
 ## Usar como biblioteca em outro projeto (pip)
 O diretório `src/` é empacotado como `defesacivil_llm` (`pyproject.toml`).
@@ -39,7 +61,7 @@ r = llm.perguntar("...")   # dict: status (ok | nao_consta | erro_formato), resp
 - **Adaptador LoRA**: `DefesaCivilLLM(adapter="usuario/repo-no-hf")`, ou a variável `DEFESACIVIL_ADAPTER`, ou `ADAPTER_PADRAO` em `src/llm.py`. Sem adaptador, usa RAG simples (config B).
 - **Hardware**: GPU com ≥ 8 GB recomendada; em CPU funciona, mas lento (~6 GB de RAM).
 - **Antes de commitar o pacote** (mantenedor): rode os notebooks 01 e 02 e depois `python scripts/prepare_package.py`, que copia `chunks.jsonl` e `threshold.json` para `src/data/`.
-- O adaptador (120 MB) **não** vai no repositório: publique no Hugging Face Hub. Confira a licença do modelo base (Qwen2.5-3B) antes de uso comercial.
+- O adaptador (120 MB) **não** vai no repositório: está publicado no Hugging Face Hub. Confira a licença do modelo base (Qwen2.5-3B) antes de uso comercial.
 - Dados pessoais (CPF, telefone, e-mail, CEP) são mascarados antes do processamento, a inferência é local e nada é registrado em log.
 
 ## Contrato de saída
@@ -51,11 +73,11 @@ O sistema valida o JSON (status válido, citações só de trechos fornecidos, `
 ## Segurança, explicabilidade e LGPD
 - **Local**: modelo e busca rodam na máquina; nenhum texto vai a API de terceiros.
 - **Minimização**: CPF, telefone, e-mail e CEP são mascarados antes de qualquer processamento (`sanitize_pii`).
-- **Logs** guardam só hash, tamanho, status e documentos citados — nunca o texto da pergunta.
+- **Logs** guardam só hash, tamanho, status e documentos citados, nunca o texto da pergunta.
 - **Explicável**: citação com documento/página/trecho; `confianca_busca` (score) na resposta.
 - **Anti-alucinação**: limiar recusa sem chamar o LLM; validação de citação; recusa treinada no LoRA.
 - **Avisos**: documentos `historico` ou `verificar_vigencia` geram aviso na resposta; `aviso_legal` lembra que a ferramenta não substitui o comando do incidente.
 - A base contém só documentos públicos institucionais; não há dados pessoais nela.
 
-## Limitações conhecidas
-Gabarito pequeno (40 perguntas; 20 no teste) → intervalos de confiança largos; a IT-16 do CBPMESP traz "16/2011" no cabeçalho e o nome do arquivo diz 2015 (vigência a verificar); licenças dos PDFs não são todas declaradas (ver `base/fontes.csv`).
+## Vídeo
+Segue link:
